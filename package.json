@@ -1,0 +1,31 @@
+{
+  "name": "express-todo",
+  "version": "1.0.0",
+  "description": "Todo-list with Express corresponding to the YouTube Tutorial of @iamshaunjp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvestrevivo/express-todo.git"
+  },
+  "keywords": [
+    "express",
+    "todo-list",
+    "mongoose",
+    "mongodb",
+    "node"
+  ],
+  "author": "@silvestrevivo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/silvestrevivo/express-todo/issues"
+  },
+  "homepage": "https://github.com/silvestrevivo/express-todo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  }
+}

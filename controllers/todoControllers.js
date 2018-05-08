@@ -12,10 +12,6 @@ const todoSchema = new mongoose.Schema({
 
 // Model
 const Todo = mongoose.model('Todo', todoSchema);
-const itemOne = Todo({ item: 'buy flowers' }).save((err) => {
-  if (err) throw err
-  console.log('item saved')
-});
 
 // Parsing the body for post request
 const urlencodeParser = bodyParser.urlencoded({ extended: false });
@@ -25,18 +21,25 @@ module.exports = function (app) {
 
   // getting data from database
   app.get('/todo', (req, res) => {
-    res.render('todo', { todos: data });
+    Todo.find({}, (err, data) => {
+      if (err) throw err;
+      res.render('todo', { todos: data });
+    });
   });
 
   // writting data in database
   app.post('/todo', urlencodeParser, (req, res) => {
-    data.push(req.body);
-    res.json(data);
+    var newTodo = Todo(req.body).save((err, data) => {
+      if (err) throw err;
+      res.json(data);
+    });
   });
 
   // deleting data in database
   app.delete('/todo/:item', (req, res) => {
-    data = data.filter(todo => todo.item.replace(/ /g, '-') != req.params.item);
-    res.json(data);
+    Todo.find({ item: req.params.item.replace(/\-/g, ' ') }).remove((err, data) => {
+      if (err) throw err;
+      res.json(data);
+    });
   });
 }

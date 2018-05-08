@@ -18,13 +18,13 @@ module.exports = function (app) {
 
   // writting data in database
   app.post('/todo', urlencodeParser, (req, res) => {
-    console.log(req.body)
     data.push(req.body);
     res.json(data);
   });
 
   // deleting data in database
-  app.delete('/todo', (req, res) => {
-
+  app.delete('/todo/:item', (req, res) => {
+    data = data.filter(todo => todo.item.replace(/ /g, '-') != req.params.item);
+    res.json(data);
   });
 }
